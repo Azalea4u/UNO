@@ -4,6 +4,7 @@ public class Game : MonoBehaviour
 {
 	[SerializeField]
 	public Player[] players;
+	[HideInInspector]
 	public Player currentPlayer;
 	private int currentPlayerIndex;
 	[SerializeField]
