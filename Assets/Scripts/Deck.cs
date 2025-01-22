@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Deck : MonoBehaviour
@@ -8,7 +9,7 @@ public class Deck : MonoBehaviour
     private List<Card> drawPile = new List<Card>();
     private List<Card> discardPile = new List<Card>();
 
-    public Deck()
+    private void Start()
     {
         InitializeDeck();
         Shuffle();
