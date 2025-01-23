@@ -11,14 +11,20 @@ public class Game : MonoBehaviour
 	public Deck deck;
 
 	private bool reversed;
+	[HideInInspector]
 	public bool gameOver;
 
+	[HideInInspector]
 	public Player winner;
 
 	public void StartGame()
 	{
+		deck.InitializeDeck();
+
 		foreach (Player player in players)
 		{
+			player.InitializePlayer();
+
 			for (int i = 0; i < 7; i++)
 			{
 				player.DrawCard(deck);
@@ -37,7 +43,7 @@ public class Game : MonoBehaviour
 		}
 		else
 		{
-			if (currentPlayerIndex < players.Length) currentPlayerIndex++;
+			if (currentPlayerIndex < players.Length - 1) currentPlayerIndex++;
 			else currentPlayerIndex = 0;
 		}
 
@@ -141,13 +147,19 @@ public class Game : MonoBehaviour
 	private bool checkColor(Card playedCard)
 	{
 		if(playedCard == null) return false;
-		if (playedCard.Color.Equals(deck.getTopOfDiscard())) return true;
+		if (playedCard.Color.Equals(deck.getTopOfDiscard().Color)) return true;
 		return false;
 	}
 
 	private void ChooseColor()
 	{
 
+	}
+
+	public void DrawCardFromDeck()
+	{
+		currentPlayer.DrawCard(deck);
+		nextTurn();
 	}
 
 	private void chooseFirstPlayer()

@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 	public string Name;
 	private List<Card> Hand;
 
-	private void Start()
+	public void InitializePlayer()
 	{
 		Hand = new List<Card>();
 	}

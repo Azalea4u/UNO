@@ -9,14 +9,10 @@ public class Deck : MonoBehaviour
     private List<Card> drawPile = new List<Card>();
     private List<Card> discardPile = new List<Card>();
 
-    private void Start()
+    public void InitializeDeck()
     {
-        InitializeDeck();
-        Shuffle();
-    }
+        discardPile.Clear();
 
-    private void InitializeDeck()
-    {
         string[] colors = { "Red", "Blue", "Green", "Yellow" };
         foreach (var color in colors)
         {
@@ -43,6 +39,15 @@ public class Deck : MonoBehaviour
 			drawPile.Add(new Card(-4, "Black", CardType.Wild));
 			drawPile.Add(new Card(-5, "Black", CardType.Wild4));
 		}
+
+        Shuffle();
+        DiscardFirstCard();
+    }
+
+    private void DiscardFirstCard()
+    {
+        Card card = DrawCard();
+        DiscardCard(card);
     }
 
     public void Shuffle()
@@ -74,6 +79,6 @@ public class Deck : MonoBehaviour
 
     public Card getTopOfDiscard()
     {
-        return drawPile.Last();
+        return discardPile.Last();
     }
 }
