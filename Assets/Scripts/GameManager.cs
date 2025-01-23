@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
             {
                 CurrentTurn = "Player02";
             }
-            else if (CurrentTurn == "")
+            else if (CurrentTurn == "Player02")
             {
                 CurrentTurn = "Player01";
             }
