@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Deck : MonoBehaviour
@@ -7,7 +9,7 @@ public class Deck : MonoBehaviour
     private List<Card> drawPile = new List<Card>();
     private List<Card> discardPile = new List<Card>();
 
-    public Deck()
+    private void Start()
     {
         InitializeDeck();
         Shuffle();
@@ -20,9 +22,27 @@ public class Deck : MonoBehaviour
         {
             for (int i = 0; i <= 9; i++)
             {
-                drawPile.Add(new Card(i, color));
+                drawPile.Add(new Card(i, color, CardType.Number));
             }
-        }
+
+			for (int i = 1; i <= 9; i++)
+			{
+				drawPile.Add(new Card(i, color, CardType.Number));
+			}
+
+            for(int i = 0; i < 2; i++)
+            {
+                drawPile.Add(new Card(-1, color, CardType.Skip));
+                drawPile.Add(new Card(-2, color, CardType.Reverse));
+                drawPile.Add(new Card(-3, color, CardType.Draw2));
+            }
+		}
+
+        for (int i = 0; i < 4; i++)
+        {
+			drawPile.Add(new Card(-4, "Black", CardType.Wild));
+			drawPile.Add(new Card(-5, "Black", CardType.Wild4));
+		}
     }
 
     public void Shuffle()
