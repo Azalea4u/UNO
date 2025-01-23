@@ -1,13 +1,57 @@
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public GameManager Instance { get; private set; }
+
     [SerializeField]
     Game game;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [Header("Game States")]
+    public string CurrentTurn = "Player01";
+
+    public Camera Player01_Camera;
+    public Camera Player02_Camera;
+
     void Start()
     {
-        game.StartGame();
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); // Keep the GameManager across scenes
+        }
+        else
+        {
+            Destroy(gameObject); // Destroy duplicate GameManager
+        }
+
+        ActivateDisplays();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (CurrentTurn == "Player01")
+            {
+                CurrentTurn = "Player02";
+            }
+            else if (CurrentTurn == "")
+            {
+                CurrentTurn = "Player01";
+            }
+        }
+    }
+
+    private void ActivateDisplays()
+    {
+        // Activate all available displays
+        for (int i = 0; i < Display.displays.Length; i++)
+        {
+            Display.displays[i].Activate();
+        }
     }
 
     public void playCard(int arrayIndex)
