@@ -10,6 +10,11 @@ public class Game : MonoBehaviour
 	[SerializeField]
 	public Deck deck;
 
+	private bool reversed;
+	public bool gameOver;
+
+	public Player winner;
+
 	public void StartGame()
 	{
 		foreach (Player player in players)
@@ -25,8 +30,16 @@ public class Game : MonoBehaviour
 
 	public void nextTurn()
 	{
-		if (currentPlayerIndex < players.Length) currentPlayerIndex++;
-		else currentPlayerIndex = 0;
+		if (reversed)
+		{
+			if (currentPlayerIndex > 0) currentPlayerIndex--;
+			else currentPlayerIndex = players.Length;
+		}
+		else
+		{
+			if (currentPlayerIndex < players.Length) currentPlayerIndex++;
+			else currentPlayerIndex = 0;
+		}
 
 		currentPlayer = players[currentPlayerIndex];
 	}
@@ -39,18 +52,106 @@ public class Game : MonoBehaviour
 	public void PlayCard(int arrayIndex)
 	{
 		Card playedCard = currentPlayer.PlayCard(arrayIndex);
-		deck.DiscardCard(playedCard);
+
+		bool valid = false;
+
+		if (playedCard != null)
+		{
+			switch (playedCard.Type)
+			{
+				case (CardType.Number):
+					if ((checkColor(playedCard)) || (playedCard.Value == deck.getTopOfDiscard().Value))
+					{
+						checkForWin();
+
+						valid = true;
+						nextTurn();
+					}
+					break;
+				case (CardType.Skip):
+					if ((checkColor(playedCard)) || (deck.getTopOfDiscard().Type == CardType.Skip))
+					{
+						checkForWin();
+
+						valid = true;
+						nextTurn();
+						nextTurn();
+					} 
+					break;
+				case (CardType.Reverse):
+					if ((checkColor(playedCard)) || (deck.getTopOfDiscard().Type == CardType.Reverse))
+					{
+						checkForWin();
+
+						valid = true;
+						reversed = true;
+						nextTurn();
+					}
+					break;
+				case (CardType.Draw2):
+					if ((checkColor(playedCard)) || (deck.getTopOfDiscard().Type == CardType.Draw2))
+					{
+						checkForWin();
+
+						valid = true;
+						nextTurn();
+						currentPlayer.DrawCard(deck);
+						currentPlayer.DrawCard(deck);
+						nextTurn();
+					}
+					break;
+				case (CardType.Wild):
+					valid = true;
+					checkForWin();
+
+					ChooseColor();
+					nextTurn();
+					break;
+				case (CardType.Wild4):
+					checkForWin();
+
+					valid = true;
+					ChooseColor();
+					nextTurn();
+					currentPlayer.DrawCard(deck);
+					currentPlayer.DrawCard(deck);
+					currentPlayer.DrawCard(deck);
+					currentPlayer.DrawCard(deck);
+					nextTurn();
+					break;
+				default:
+					print("What?!, this should not be happening");
+					break;
+			}
+		}
+
+		if (valid) deck.DiscardCard(playedCard);
+		else currentPlayer.AddCardToHand(playedCard);
+	}
+
+	private void checkForWin()
+	{
+		if(currentPlayer.GetHandCount() == 0)
+		{
+			winner = currentPlayer;
+			gameOver = true;
+		}
+	}
+
+	private bool checkColor(Card playedCard)
+	{
+		if(playedCard == null) return false;
+		if (playedCard.Color.Equals(deck.getTopOfDiscard())) return true;
+		return false;
+	}
+
+	private void ChooseColor()
+	{
+
 	}
 
 	private void chooseFirstPlayer()
 	{
-		if(Random.value > 0.5)
-		{
-			currentPlayer = players[0];
-		}
-		else
-		{
-			currentPlayer = players[1];
-		}
+		currentPlayer = players[Random.Range(0, players.Length)];
 	}
 }

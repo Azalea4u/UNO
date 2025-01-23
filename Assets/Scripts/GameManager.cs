@@ -10,12 +10,6 @@ public class GameManager : MonoBehaviour
         game.StartGame();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void playCard(int arrayIndex)
     {
         game.PlayCard(arrayIndex);

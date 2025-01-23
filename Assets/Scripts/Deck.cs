@@ -71,4 +71,9 @@ public class Deck : MonoBehaviour
         discardPile = new List<Card>();
         Shuffle();
     }
+
+    public Card getTopOfDiscard()
+    {
+        return drawPile.Last();
+    }
 }

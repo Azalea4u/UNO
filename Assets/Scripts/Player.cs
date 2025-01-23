@@ -22,4 +22,14 @@ public class Player : MonoBehaviour
 	{
 		Hand.Add(deck.DrawCard());
 	}
+
+	public void AddCardToHand(Card card)
+	{
+		Hand.Add(card);
+	}
+
+	public int GetHandCount()
+	{
+		return Hand.Count;
+	}
 }
