@@ -66,7 +66,7 @@ public class Game : MonoBehaviour
 			switch (playedCard.Type)
 			{
 				case (CardType.Number):
-					if ((checkColor(playedCard)) || (playedCard.Value == deck.getTopOfDiscard().Value))
+					if ((checkColor(playedCard)) || (playedCard.Number == deck.getTopOfDiscard().Number))
 					{
 						checkForWin();
 

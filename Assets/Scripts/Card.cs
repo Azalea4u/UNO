@@ -1,20 +1,38 @@
 using UnityEngine;
 
-public class Card
+public class Card : MonoBehaviour
 {
-	public int Value { get; private set; }
-    public string Color { get; private set; }
-    public CardType Type {get; private set; }
+    [SerializeField] private CardType type;
+    [SerializeField] private string color;
+    [SerializeField] private int number;
+
+    public CardType Type
+    {
+        get => type;
+        set => type = value;
+    }
+
+    public string Color
+    {
+        get => color;
+        set => color = value;
+    }
+
+    public int Number
+    {
+        get => number;
+        set => number = value;
+    }
 
     public Card(int value, string color, CardType type)
     {
-        Value = value;
-        Color = color;
-        Type = type;
+        this.number = value;
+        this.color = color;
+        this.type = type;
     }
 
     public override string ToString()
     {
-        return $"{Color} {Value} {Type}";
+        return $"{color} {number} {type}";
     }
 }
