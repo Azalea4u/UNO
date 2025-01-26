@@ -1,12 +1,14 @@
 using UnityEngine;
+using Unity.Netcode;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     [SerializeField]
     Game game;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    
     void Start()
-    {
+    { 
         game.StartGame();
     }
 
