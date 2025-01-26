@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 	public string Name;
 	private List<Card> Hand;
 
-	private void Start()
+	public void InitializePlayer()
 	{
 		Hand = new List<Card>();
 	}
@@ -21,5 +21,15 @@ public class Player : MonoBehaviour
 	public void DrawCard(Deck deck)
 	{
 		Hand.Add(deck.DrawCard());
+	}
+
+	public void AddCardToHand(Card card)
+	{
+		Hand.Add(card);
+	}
+
+	public int GetHandCount()
+	{
+		return Hand.Count;
 	}
 }
