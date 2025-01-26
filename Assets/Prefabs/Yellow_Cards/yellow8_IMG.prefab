@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3979396306020299482}
   - component: {fileID: 5716985560844664829}
   - component: {fileID: 2185261615243422574}
+  - component: {fileID: 2063621993449672449}
   m_Layer: 5
   m_Name: yellow8_IMG
   m_TagString: Untagged
@@ -75,3 +76,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2063621993449672449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5290003321526713841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea08718346ed654409f673aa4b65e137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  color: Yellow
+  number: 8

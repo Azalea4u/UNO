@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3724340726885339689}
   - component: {fileID: 1644325585339880737}
   - component: {fileID: 2775434416755464198}
+  - component: {fileID: 6567109760653623672}
   m_Layer: 5
   m_Name: blue2_IMG
   m_TagString: Untagged
@@ -75,3 +76,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6567109760653623672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7803424393681886654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea08718346ed654409f673aa4b65e137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  color: Blue
+  number: 2

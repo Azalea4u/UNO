@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3316620075876264975}
   - component: {fileID: 648591796496476234}
   - component: {fileID: 7274925821878180408}
+  - component: {fileID: -5912236081671826962}
   m_Layer: 5
   m_Name: green5_IMG
   m_TagString: Untagged
@@ -75,3 +76,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-5912236081671826962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941290366548731840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea08718346ed654409f673aa4b65e137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  color: Green
+  number: 5

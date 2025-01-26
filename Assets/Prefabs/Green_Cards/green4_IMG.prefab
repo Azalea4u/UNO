@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4143018417131887934}
   - component: {fileID: 308024083829490465}
   - component: {fileID: 9004477575435146216}
+  - component: {fileID: -425415881528360282}
   m_Layer: 5
   m_Name: green4_IMG
   m_TagString: Untagged
@@ -75,3 +76,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-425415881528360282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6619329618404267313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea08718346ed654409f673aa4b65e137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  color: Green
+  number: 4
