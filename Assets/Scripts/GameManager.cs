@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -18,8 +19,7 @@ public class GameManager : MonoBehaviour
 
 	public Canvas Player01_UI;
 	public Canvas Player02_UI;
-
-	[SerializeField] private string currentPlayerTurn = "Player01";
+	[SerializeField] TextMeshProUGUI CurrentTurn;
 
 	private GameObject WildCard;
 
@@ -46,16 +46,20 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (currentPlayerTurn == "Player01")
+		if (game.currentPlayerIndex == 0)
 		{
 			Player01_UI.targetDisplay = 2;
 			Player02_UI.targetDisplay = 1;
+
+			CurrentTurn.text = "Player 1's Turn!";
 		}
-		else if (currentPlayerTurn == "Player02")
+		else if (game.currentPlayerIndex == 1)
 		{
 			Player01_UI.targetDisplay = 0;
 			Player02_UI.targetDisplay = 2;
-		}
+
+            CurrentTurn.text = "Player 2's Turn!";
+        }
 	}
 
 	private void ActivateDisplays()
