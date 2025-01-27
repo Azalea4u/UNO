@@ -7,7 +7,7 @@ public class Game : MonoBehaviour
 	public Player[] players;
 	[HideInInspector]
 	public Player currentPlayer;
-	public int currentPlayerIndex;
+	private int currentPlayerIndex;
 	[SerializeField]
 	public Deck deck;
 
