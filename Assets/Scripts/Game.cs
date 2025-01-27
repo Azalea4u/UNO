@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Game : MonoBehaviour
@@ -29,6 +30,8 @@ public class Game : MonoBehaviour
 			{
 				player.DrawCard(deck);
 			}
+
+			player.UpdateHandUI();
 		}
 
 		chooseFirstPlayer();
@@ -55,19 +58,18 @@ public class Game : MonoBehaviour
 		currentPlayer.DrawCard(deck);
 	}
 
-	public void PlayCard(int arrayIndex)
+	public void PlayCard(GameObject playedCard)
 	{
-		Card playedCard = currentPlayer.PlayCard(arrayIndex);
-
 		bool valid = false;
 
 		if (playedCard != null)
 		{
-			switch (playedCard.Type)
+			switch (playedCard.GetComponent<Card>().Type)
 			{
 				case (CardType.Number):
-					if ((checkColor(playedCard)) || (playedCard.Number == deck.getTopOfDiscard().Number))
+					if ((checkColor(playedCard)) || (playedCard.GetComponent<Card>().Number == deck.getTopOfDiscard().GetComponent<Card>().Number))
 					{
+						currentPlayer.PlayCard(playedCard);
 						checkForWin();
 
 						valid = true;
@@ -75,8 +77,9 @@ public class Game : MonoBehaviour
 					}
 					break;
 				case (CardType.Skip):
-					if ((checkColor(playedCard)) || (deck.getTopOfDiscard().Type == CardType.Skip))
+					if ((checkColor(playedCard)) || (deck.getTopOfDiscard().GetComponent<Card>().Type == CardType.Skip))
 					{
+						currentPlayer.PlayCard(playedCard);
 						checkForWin();
 
 						valid = true;
@@ -85,8 +88,9 @@ public class Game : MonoBehaviour
 					} 
 					break;
 				case (CardType.Reverse):
-					if ((checkColor(playedCard)) || (deck.getTopOfDiscard().Type == CardType.Reverse))
+					if ((checkColor(playedCard)) || (deck.getTopOfDiscard().GetComponent<Card>().Type == CardType.Reverse))
 					{
+						currentPlayer.PlayCard(playedCard);
 						checkForWin();
 
 						valid = true;
@@ -95,8 +99,9 @@ public class Game : MonoBehaviour
 					}
 					break;
 				case (CardType.Draw2):
-					if ((checkColor(playedCard)) || (deck.getTopOfDiscard().Type == CardType.Draw2))
+					if ((checkColor(playedCard)) || (deck.getTopOfDiscard().GetComponent<Card>().Type == CardType.Draw2))
 					{
+						currentPlayer.PlayCard(playedCard);
 						checkForWin();
 
 						valid = true;
@@ -108,12 +113,14 @@ public class Game : MonoBehaviour
 					break;
 				case (CardType.Wild):
 					valid = true;
+					currentPlayer.PlayCard(playedCard);
 					checkForWin();
 
 					ChooseColor();
 					nextTurn();
 					break;
 				case (CardType.Wild4):
+					currentPlayer.PlayCard(playedCard);
 					checkForWin();
 
 					valid = true;
@@ -144,10 +151,10 @@ public class Game : MonoBehaviour
 		}
 	}
 
-	private bool checkColor(Card playedCard)
+	private bool checkColor(GameObject playedCard)
 	{
 		if(playedCard == null) return false;
-		if (playedCard.Color.Equals(deck.getTopOfDiscard().Color)) return true;
+		if (playedCard.GetComponent<Card>().Color.Equals(deck.getTopOfDiscard().GetComponent<Card>().Color)) return true;
 		return false;
 	}
 

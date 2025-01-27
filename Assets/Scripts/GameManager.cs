@@ -11,6 +11,8 @@ public class GameManager : NetworkBehaviour
     [SerializeField]
     Game game;
 
+    [SerializeField]
+
     [Header("Game States")]
     public string CurrentTurn = "Player01";
 
@@ -30,6 +32,8 @@ public class GameManager : NetworkBehaviour
         }
 
         ActivateDisplays();
+
+        game.StartGame();
     }
 
     private void Update()
@@ -57,9 +61,13 @@ public class GameManager : NetworkBehaviour
         }
     }
 
-    [Rpc(SendTo.Server)]
-    public void playCardRPC(int arrayIndex)
+    public void playCard(GameObject card)
     {
-        game.PlayCard(arrayIndex);
+        game.PlayCard(card);
+    }
+
+    public void UpdateDiscardPic()
+    {
+        
     }
 }

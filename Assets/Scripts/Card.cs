@@ -1,10 +1,15 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
+[Serializable]
 public class Card : MonoBehaviour
 {
     [SerializeField] private CardType type;
     [SerializeField] private string color;
     [SerializeField] private int number;
+    [SerializeField] private Image image;
+
 
     public CardType Type
     {
@@ -24,6 +29,12 @@ public class Card : MonoBehaviour
         set => number = value;
     }
 
+    public Image Image
+    {
+        get => image;
+        set => image = value;
+    }
+
     public Card(int value, string color, CardType type)
     {
         this.number = value;
@@ -31,7 +42,7 @@ public class Card : MonoBehaviour
         this.type = type;
     }
 
-    public override string ToString()
+	public override string ToString()
     {
         return $"{color} {number} {type}";
     }

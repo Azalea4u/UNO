@@ -1,5 +1,6 @@
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CustomEditor(typeof(Card))]
 public class CardEditor : Editor
@@ -8,8 +9,10 @@ public class CardEditor : Editor
     {
         Card card = (Card)target;
 
-        // Display the Type field
-        card.Type = (CardType)EditorGUILayout.EnumPopup("Card Type", card.Type);
+		card.Image = (Image)EditorGUILayout.ObjectField("Card Image", card.Image, typeof(Image), allowSceneObjects: true);
+
+		// Display the Type field
+		card.Type = (CardType)EditorGUILayout.EnumPopup("Card Type", card.Type);
 
         // Conditionally display the Color field
         if (card.Type != CardType.Wild && card.Type != CardType.Wild4)
