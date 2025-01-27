@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -169,7 +170,7 @@ public class Game : MonoBehaviour
 		else currentPlayer.AddCardToHand(playedCard);
 	}
 
-	private void checkForWin()
+	public void checkForWin()
 	{
 		if(currentPlayer.GetHandCount() == 0)
 		{
