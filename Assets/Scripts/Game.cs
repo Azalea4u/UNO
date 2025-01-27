@@ -78,11 +78,6 @@ public class Game : MonoBehaviour
 		}
 	}
 
-	public void DrawCard()
-	{
-		currentPlayer.DrawCard(deck);
-	}
-
 	public void PlayCard(GameObject playedCard)
 	{
 		bool valid = false;
