@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,7 +11,6 @@ public class Game : MonoBehaviour
 	public int currentPlayerIndex;
 	[SerializeField]
 	public Deck deck;
-
 
 	private bool reversed;
 	[HideInInspector]
@@ -183,12 +183,6 @@ public class Game : MonoBehaviour
 		if(playedCard == null) return false;
 		if (playedCard.GetComponent<Card>().Color.Equals(deck.getTopOfDiscard().GetComponent<Card>().Color)) return true;
 		return false;
-	}
-
-	public void DrawCardFromDeck()
-	{
-		currentPlayer.DrawCard(deck);
-		nextTurn();
 	}
 
 	private void chooseFirstPlayer()
