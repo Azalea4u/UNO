@@ -1,9 +1,10 @@
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using Unity.Netcode;
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
     public GameManager Instance { get; private set; }
 
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    
     private void ActivateDisplays()
     {
         // Activate all available displays
@@ -55,7 +57,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void playCard(int arrayIndex)
+    [Rpc(SendTo.Server)]
+    public void playCardRPC(int arrayIndex)
     {
         game.PlayCard(arrayIndex);
     }
