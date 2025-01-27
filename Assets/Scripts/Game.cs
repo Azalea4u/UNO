@@ -56,7 +56,6 @@ public class Game : MonoBehaviour
 
 	public void nextTurn()
 	{
-
 		if (reversed)
 		{
 			if (currentPlayerIndex > 0) currentPlayerIndex--;
@@ -184,12 +183,6 @@ public class Game : MonoBehaviour
 		if(playedCard == null) return false;
 		if (playedCard.GetComponent<Card>().Color.Equals(deck.getTopOfDiscard().GetComponent<Card>().Color)) return true;
 		return false;
-	}
-
-	public void DrawCardFromDeck()
-	{
-		currentPlayer.DrawCard(deck);
-		nextTurn();
 	}
 
 	private void chooseFirstPlayer()

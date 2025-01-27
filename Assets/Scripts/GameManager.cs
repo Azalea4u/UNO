@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-	public GameManager Instance { get; private set; }
+	public GameManager instance { get; private set; }
 
 	[SerializeField]
 	Game game;
@@ -29,9 +29,9 @@ public class GameManager : MonoBehaviour
 	private GameObject WildCard;
 	void Start()
 	{
-		if (Instance == null)
+		if (instance == null)
 		{
-			Instance = this;
+			instance = this;
 			DontDestroyOnLoad(gameObject); // Keep the GameManager across scenes
 		}
 		else
@@ -133,9 +133,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void DrawCardFromDeck()
+    {
+        game.currentPlayer.DrawCard(game.deck);
+        game.nextTurn();
+        StartCoroutine(DelayScreenSwitch());
+    }
+
     private IEnumerator DelayScreenSwitch()
     {
-        yield return new WaitForSeconds(0.25f); // Add a delay of 1.5 seconds
+        yield return new WaitForSeconds(0.4f); // Add a delay of 1.5 seconds
         UpdateDiscardPic();
 		SwitchPlayerScreen();
     }
