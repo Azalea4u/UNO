@@ -54,9 +54,9 @@ Welcome to the **UNO Game**, a digital recreation of the classic card game UNO! 
    git clone https://github.com/your-username/uno-game.git
 
 2. Navigate to the project directory:
-
+```bash
     cd uno-game
-
+```
 3. Open the project in Unity 6.
 4. Build and run the project to start playing.
 
