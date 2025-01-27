@@ -10,7 +10,7 @@ public class Deck : MonoBehaviour
 	private List<GameObject> drawPile = new List<GameObject>();
 	[SerializeField]
 	private List<GameObject> discardPile = new List<GameObject>();
-	[SerializeField] GameObject cardPrefab;
+	[SerializeField] public GameObject cardPrefab;
 
 	public void InitializeDeck()
 	{
