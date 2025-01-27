@@ -11,6 +11,7 @@ public class Game : MonoBehaviour
 	[SerializeField]
 	public Deck deck;
 
+
 	private bool reversed;
 	[HideInInspector]
 	public bool gameOver;
@@ -35,6 +36,22 @@ public class Game : MonoBehaviour
 		}
 
 		chooseFirstPlayer();
+		foreach (Player player in players)
+		{
+			if (player != currentPlayer)
+			{
+				foreach (GameObject ACard in player.Hand)
+				{
+					ACard.GetComponent<DragDrop>().enabled = false;
+				}
+			} else
+			{
+				foreach (GameObject ACard in currentPlayer.Hand)
+				{
+					ACard.GetComponent<DragDrop>().enabled = true;
+				}
+			}
+		}
 	}
 
 	public void nextTurn()
@@ -42,7 +59,7 @@ public class Game : MonoBehaviour
 		if (reversed)
 		{
 			if (currentPlayerIndex > 0) currentPlayerIndex--;
-			else currentPlayerIndex = players.Length;
+			else currentPlayerIndex = players.Length - 1;
 		}
 		else
 		{
@@ -50,7 +67,15 @@ public class Game : MonoBehaviour
 			else currentPlayerIndex = 0;
 		}
 
+		foreach(GameObject ACard in currentPlayer.Hand)
+		{
+			ACard.GetComponent<DragDrop>().enabled = false;
+		}
 		currentPlayer = players[currentPlayerIndex];
+		foreach (GameObject ACard in currentPlayer.Hand)
+		{
+			ACard.GetComponent<DragDrop>().enabled = true;
+		}
 	}
 
 	public void DrawCard()
@@ -94,8 +119,12 @@ public class Game : MonoBehaviour
 						checkForWin();
 
 						valid = true;
-						reversed = true;
-						nextTurn();
+						reversed = !reversed;
+
+						if (players.Length > 2)
+						{
+							nextTurn();
+						}
 					}
 					break;
 				case (CardType.Draw2):
@@ -116,7 +145,6 @@ public class Game : MonoBehaviour
 					currentPlayer.PlayCard(playedCard);
 					checkForWin();
 
-					ChooseColor();
 					nextTurn();
 					break;
 				case (CardType.Wild4):
@@ -124,7 +152,6 @@ public class Game : MonoBehaviour
 					checkForWin();
 
 					valid = true;
-					ChooseColor();
 					nextTurn();
 					currentPlayer.DrawCard(deck);
 					currentPlayer.DrawCard(deck);
@@ -156,11 +183,6 @@ public class Game : MonoBehaviour
 		if(playedCard == null) return false;
 		if (playedCard.GetComponent<Card>().Color.Equals(deck.getTopOfDiscard().GetComponent<Card>().Color)) return true;
 		return false;
-	}
-
-	private void ChooseColor()
-	{
-
 	}
 
 	public void DrawCardFromDeck()
