@@ -1,3 +1,4 @@
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class GameManager : MonoBehaviour
 	Game game;
 
 	[SerializeField]
-	GameObject WildMenu;
+	public GameObject WildMenu;
 
 	[SerializeField]
 	private Image[] DiscardImgs;
@@ -19,9 +20,11 @@ public class GameManager : MonoBehaviour
 	public Canvas Player01_UI;
 	public Canvas Player02_UI;
 
-	[SerializeField] private string currentPlayerTurn = "Player01";
-
+	public int Player1_NumberofCards;
+	public int Player2_NumberofCards;
 	private GameObject WildCard;
+
+	[SerializeField] private TextMeshProUGUI currentTurn;
 
 	void Start()
 	{
@@ -38,7 +41,7 @@ public class GameManager : MonoBehaviour
 		ActivateDisplays();
 
 		WildMenu.SetActive(false);
-        Player01_UI.targetDisplay = 2;
+        //Player01_UI.targetDisplay = 2;
 
         game.StartGame();
 		UpdateDiscardPic();
@@ -46,17 +49,32 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (currentPlayerTurn == "Player01")
+		if (game.currentPlayerIndex == 0)
 		{
 			Player01_UI.targetDisplay = 2;
 			Player02_UI.targetDisplay = 1;
+
+
+			currentTurn.text = "Player 1's Turn";
 		}
-		else if (currentPlayerTurn == "Player02")
-		{
-			Player01_UI.targetDisplay = 0;
+        else if (game.currentPlayerIndex == 1)
+        {
+            Player01_UI.targetDisplay = 0;
 			Player02_UI.targetDisplay = 2;
+
+			currentTurn.text = "Player 2's Turn";
 		}
 	}
+
+	private void UpdateOpponentHand()
+	{
+        Player2_NumberofCards = game.players[1].Hand.Count;
+
+        for (int i = 0; i < Player2_NumberofCards; i++)
+        {
+            //game.players[1].AddCardToHand(BackofUno_IMAGE);
+        }
+    }
 
 	private void ActivateDisplays()
 	{
@@ -96,7 +114,8 @@ public class GameManager : MonoBehaviour
 	public void BlueBtn()
 	{
 		WildCard.GetComponent<Card>().Color = "blue";
-		game.PlayCard(WildCard);
+        game.PlayCard(WildCard);
+        WildMenu.SetActive(false);
 		UpdateDiscardPic();
 	}
 
@@ -104,20 +123,26 @@ public class GameManager : MonoBehaviour
 	{
 		WildCard.GetComponent<Card>().Color = "yellow";
 		game.PlayCard(WildCard);
+        WildMenu.SetActive(false);
 		UpdateDiscardPic();
-	}
 
-	public void GreenBtn()
+    }
+
+    public void GreenBtn()
 	{
 		WildCard.GetComponent<Card>().Color = "green";
 		game.PlayCard(WildCard);
+        WildMenu.SetActive(false);
 		UpdateDiscardPic();
-	}
 
-	public void RedBtn()
+    }
+
+    public void RedBtn()
 	{
 		WildCard.GetComponent<Card>().Color = "red";
 		game.PlayCard(WildCard);
+        WildMenu.SetActive(false);
 		UpdateDiscardPic();
-	}
+
+    }
 }
