@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,7 +11,6 @@ public class Game : MonoBehaviour
 	public int currentPlayerIndex;
 	[SerializeField]
 	public Deck deck;
-
 
 	private bool reversed;
 	[HideInInspector]
@@ -56,6 +56,7 @@ public class Game : MonoBehaviour
 
 	public void nextTurn()
 	{
+
 		if (reversed)
 		{
 			if (currentPlayerIndex > 0) currentPlayerIndex--;

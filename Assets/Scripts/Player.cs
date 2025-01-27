@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	public List<GameObject> Hand;
 	[SerializeField]
-	private GameObject PlayerHandUI;
+	public GameObject PlayerHandUI;
 
 	public void InitializePlayer()
 	{
