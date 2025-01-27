@@ -16,8 +16,10 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	private Image[] DiscardImgs;
 
-	public Camera Player01_Camera;
-	public Camera Player02_Camera;
+	public Canvas Player01_UI;
+	public Canvas Player02_UI;
+
+	[SerializeField] private string currentPlayerTurn = "Player01";
 
 	private GameObject WildCard;
 
@@ -36,15 +38,23 @@ public class GameManager : MonoBehaviour
 		ActivateDisplays();
 
 		WildMenu.SetActive(false);
-		game.StartGame();
+        Player01_UI.targetDisplay = 2;
+
+        game.StartGame();
 		UpdateDiscardPic();
 	}
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (currentPlayerTurn == "Player01")
 		{
-			//if (game.currentPlayer )
+			Player01_UI.targetDisplay = 2;
+			Player02_UI.targetDisplay = 1;
+		}
+		else if (currentPlayerTurn == "Player02")
+		{
+			Player01_UI.targetDisplay = 0;
+			Player02_UI.targetDisplay = 2;
 		}
 	}
 
