@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5376696230753914398}
+  - component: {fileID: -4104209441946279551}
+  - component: {fileID: -8588831446910010762}
   - component: {fileID: 674278502604567493}
   - component: {fileID: 7435776312402262510}
-  - component: {fileID: -4104209441946279551}
+  - component: {fileID: -7427343973942068392}
   m_Layer: 5
   m_Name: green+2_IMG
   m_TagString: Untagged
@@ -38,6 +40,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 168, y: 260}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &-4104209441946279551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847763920020234845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea08718346ed654409f673aa4b65e137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 3
+  color: Green
+  number: 0
+--- !u!114 &-8588831446910010762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7847763920020234845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b986b02d5b36bf1469ff3251954ba679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &674278502604567493
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -76,7 +105,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &-4104209441946279551
+--- !u!114 &-7427343973942068392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,9 +114,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 7847763920020234845}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea08718346ed654409f673aa4b65e137, type: 3}
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
-  color: Green
-  number: 0
+  m_Delegates:
+  - eventID: 13
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -8588831446910010762}
+          m_TargetAssemblyTypeName: DragDrop, Assembly-CSharp
+          m_MethodName: BeginDrag
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: -8588831446910010762}
+          m_TargetAssemblyTypeName: DragDrop, Assembly-CSharp
+          m_MethodName: EndDrag
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
