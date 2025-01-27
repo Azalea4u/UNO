@@ -60,8 +60,8 @@ public class GameManager : NetworkBehaviour
             Display.displays[i].Activate();
         }
     }
-
-    public void playCard(GameObject card)
+    //[Rpc(SendTo.Server)]
+    public void PlayCardRPC(GameObject card)
     {
         game.PlayCard(card);
     }

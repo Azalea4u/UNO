@@ -30,7 +30,7 @@ public class DragDrop : MonoBehaviour
 
         if(this.transform.position.y > 250)
         {
-            gameManager.playCard(gameObject);
+            //gameManager.PlayCardRPC(gameObject);
         }
     }
 }
