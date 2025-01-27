@@ -13,9 +13,6 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	GameObject WildMenu;
 
-	[Header("Game States")]
-	public string CurrentTurn = "Player01";
-
 	[SerializeField]
 	private Image[] DiscardImgs;
 
@@ -38,6 +35,7 @@ public class GameManager : MonoBehaviour
 
 		ActivateDisplays();
 
+		WildMenu.SetActive(false);
 		game.StartGame();
 		UpdateDiscardPic();
 	}
@@ -46,14 +44,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			if (CurrentTurn == "Player01")
-			{
-				CurrentTurn = "Player02";
-			}
-			else if (CurrentTurn == "Player02")
-			{
-				CurrentTurn = "Player01";
-			}
+			//if (game.currentPlayer )
 		}
 	}
 
