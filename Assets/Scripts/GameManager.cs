@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     Game game;
 
+    [SerializeField]
+
     [Header("Game States")]
     public string CurrentTurn = "Player01";
 
@@ -28,6 +30,8 @@ public class GameManager : MonoBehaviour
         }
 
         ActivateDisplays();
+
+        game.StartGame();
     }
 
     private void Update()
@@ -54,8 +58,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void playCard(int arrayIndex)
+    public void playCard(GameObject card)
     {
-        game.PlayCard(arrayIndex);
+        game.PlayCard(card);
+    }
+
+    public void UpdateDiscardPic()
+    {
+        
     }
 }

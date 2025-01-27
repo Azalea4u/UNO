@@ -6,79 +6,127 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    private List<Card> drawPile = new List<Card>();
-    private List<Card> discardPile = new List<Card>();
+	[SerializeField]
+	private List<GameObject> drawPile = new List<GameObject>();
+	[SerializeField]
+	private List<GameObject> discardPile = new List<GameObject>();
+	[SerializeField] GameObject cardPrefab;
 
-    public void InitializeDeck()
-    {
-        discardPile.Clear();
+	public void InitializeDeck()
+	{
+		discardPile.Clear();
 
-        string[] colors = { "Red", "Blue", "Green", "Yellow" };
-        foreach (var color in colors)
-        {
-            for (int i = 0; i <= 9; i++)
-            {
-                drawPile.Add(new Card(i, color, CardType.Number));
-            }
+		string[] colors = { "red", "blue", "green", "yellow" };
+		foreach (var color in colors)
+		{
+			for (int i = 0; i <= 9; i++)
+			{
+				GameObject ACard = (Instantiate(cardPrefab));
+				Card TheCard = ACard.GetComponent<Card>();
+				TheCard.Number = i;
+				TheCard.Color = color;
+				TheCard.Type = CardType.Number;
+				TheCard.Image.sprite = Resources.Load<Sprite>("Images/Uno_Cards/" + color + "/UNO" + color + i);
+				drawPile.Add(ACard);
+			}
 
 			for (int i = 1; i <= 9; i++)
 			{
-				drawPile.Add(new Card(i, color, CardType.Number));
+				GameObject ACard = (Instantiate(cardPrefab));
+				Card TheCard = ACard.GetComponent<Card>();
+				TheCard.Number = i;
+				TheCard.Color = color;
+				TheCard.Type = CardType.Number;
+				TheCard.Image.sprite = Resources.Load<Sprite>("Images/Uno_Cards/" + color + "/UNO" + color + i);
+				drawPile.Add(ACard);
 			}
 
-            for(int i = 0; i < 2; i++)
-            {
-                drawPile.Add(new Card(-1, color, CardType.Skip));
-                drawPile.Add(new Card(-2, color, CardType.Reverse));
-                drawPile.Add(new Card(-3, color, CardType.Draw2));
-            }
+			for (int i = 0; i < 2; i++)
+			{
+				GameObject ACard = (Instantiate(cardPrefab));
+				Card TheCard = ACard.GetComponent<Card>();
+				TheCard.Number = -1;
+				TheCard.Color = color;
+				TheCard.Type = CardType.Skip;
+				TheCard.Image.sprite = Resources.Load<Sprite>("Images/Uno_Cards/" + color + "/UNO" + color + "Skip");
+				drawPile.Add(ACard);
+
+				ACard = (Instantiate(cardPrefab));
+				TheCard = ACard.GetComponent<Card>();
+				TheCard.Number = -2;
+				TheCard.Color = color;
+				TheCard.Type = CardType.Reverse;
+				TheCard.Image.sprite = Resources.Load<Sprite>("Images/Uno_Cards/" + color + "/UNO" + color + "Reverse");
+				drawPile.Add(ACard);
+
+				ACard = (Instantiate(cardPrefab));
+				TheCard = ACard.GetComponent<Card>();
+				TheCard.Number = -3;
+				TheCard.Color = color;
+				TheCard.Type = CardType.Draw2;
+				TheCard.Image.sprite = Resources.Load<Sprite>("Images/Uno_Cards/" + color + "/UNO" + color + "+2");
+				drawPile.Add(ACard);
+			}
 		}
 
-        for (int i = 0; i < 4; i++)
-        {
-			drawPile.Add(new Card(-4, "Black", CardType.Wild));
-			drawPile.Add(new Card(-5, "Black", CardType.Wild4));
+		for (int i = 0; i < 4; i++)
+		{
+			GameObject ACard = (Instantiate(cardPrefab));
+			Card TheCard = ACard.GetComponent<Card>();
+			TheCard.Number = -4;
+			TheCard.Color = "Black";
+			TheCard.Type = CardType.Wild;
+			TheCard.Image.sprite = Resources.Load<Sprite>("Images/Uno_Cards/other/UNOwild");
+			drawPile.Add(ACard);
+
+			ACard = (Instantiate(cardPrefab));
+			TheCard = ACard.GetComponent<Card>();
+			TheCard.Number = -5;
+			TheCard.Color = "Black";
+			TheCard.Type = CardType.Wild4;
+			TheCard.Image.sprite = Resources.Load<Sprite>("Images/Uno_Cards/other/UNOwild+4");
+			drawPile.Add(ACard);
 		}
 
-        Shuffle();
-        DiscardFirstCard();
-    }
+		Shuffle();
+		DiscardFirstCard();
+	}
 
-    private void DiscardFirstCard()
-    {
-        Card card = DrawCard();
-        DiscardCard(card);
-    }
+	private void DiscardFirstCard()
+	{
+		GameObject card = DrawCard();
+		DiscardCard(card);
+	}
 
-    public void Shuffle()
-    {
-        drawPile = drawPile.OrderBy(c => Random.value).ToList();
-    }
+	public void Shuffle()
+	{
+		drawPile = drawPile.OrderBy(c => Random.value).ToList();
+	}
 
-    public Card DrawCard()
-    {
-        if (drawPile.Count == 0) ReshuffleDiscardPile();
-        if (drawPile.Count == 0) return null;
+	public GameObject DrawCard()
+	{
+		if (drawPile.Count == 0) ReshuffleDiscardPile();
+		if (drawPile.Count == 0) return null;
 
-        Card drawnCard = drawPile[0];
-        drawPile.RemoveAt(0);
-        return drawnCard;
-    }
+		GameObject drawnCard = drawPile[0];
+		drawPile.RemoveAt(0);
+		return drawnCard;
+	}
 
-    public void DiscardCard(Card card)
-    {
-        discardPile.Add(card);
-    }
+	public void DiscardCard(GameObject card)
+	{
+		discardPile.Add(card);
+	}
 
-    private void ReshuffleDiscardPile()
-    {
-        drawPile = discardPile;
-        discardPile = new List<Card>();
-        Shuffle();
-    }
+	private void ReshuffleDiscardPile()
+	{
+		drawPile = discardPile;
+		discardPile = new List<GameObject>();
+		Shuffle();
+	}
 
-    public Card getTopOfDiscard()
-    {
-        return discardPile.Last();
-    }
+	public GameObject getTopOfDiscard()
+	{
+		return discardPile.Last();
+	}
 }

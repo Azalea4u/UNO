@@ -1,35 +1,50 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
 	public string Name;
-	private List<Card> Hand;
+	[SerializeField]
+	private List<GameObject> Hand;
+	[SerializeField]
+	private GameObject PlayerHandUI;
 
 	public void InitializePlayer()
 	{
-		Hand = new List<Card>();
+		Hand = new List<GameObject>();
 	}
 
-	public Card PlayCard(int arrayIndex)
+	public GameObject PlayCard(GameObject card)
 	{
-		Card card = Hand[arrayIndex];
-		Hand.RemoveAt(arrayIndex);
+		Hand.Remove(card);
+		card.gameObject.SetActive(false);
+		UpdateHandUI();
 		return card;
 	}
 
 	public void DrawCard(Deck deck)
 	{
 		Hand.Add(deck.DrawCard());
+		UpdateHandUI();
 	}
 
-	public void AddCardToHand(Card card)
+	public void AddCardToHand(GameObject card)
 	{
 		Hand.Add(card);
+		UpdateHandUI();
 	}
 
 	public int GetHandCount()
 	{
 		return Hand.Count;
+	}
+
+	public void UpdateHandUI()
+	{
+		foreach (GameObject Card in Hand)
+		{
+			Card.transform.SetParent(PlayerHandUI.transform);
+		}
 	}
 }

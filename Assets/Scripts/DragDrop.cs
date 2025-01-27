@@ -1,15 +1,17 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DragDrop : MonoBehaviour
 {
     private bool isDragging = false;
+    private GameManager gameManager;
 
-    private void Start()
-    {
-        
-    }
+	private void Start()
+	{
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+	}
 
-    private void Update()
+	private void Update()
     {
         if (isDragging)
         {
@@ -25,5 +27,10 @@ public class DragDrop : MonoBehaviour
     public void EndDrag()
     {
         isDragging = false;
+
+        if(this.transform.position.y > 250)
+        {
+            gameManager.playCard(gameObject);
+        }
     }
 }
