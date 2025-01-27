@@ -52,3 +52,23 @@ Welcome to the **UNO Game**, a digital recreation of the classic card game UNO! 
 1. Clone the repository to your local machine:
    ```bash
    git clone https://github.com/your-username/uno-game.git
+
+2. Navigate to the project directory:
+
+    cd uno-game
+
+3. Open the project in Unity 6.
+4. Build and run the project to start playing.
+
+## 🤝 Contributions
+
+Contributions are welcome! If you'd like to enhance the game or fix issues, feel free to fork the repository, make your changes, and submit a pull request.
+
+## 📜 License
+
+This project is licensed under the MIT License.
+
+## 🌟 Acknowledgments
+
+    UNO is a trademark of Mattel, Inc. This project is a fan-made recreation.
+    Thanks to Unity for providing the tools to make this game possible.
