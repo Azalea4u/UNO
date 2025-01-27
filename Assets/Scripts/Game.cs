@@ -7,7 +7,7 @@ public class Game : MonoBehaviour
 	public Player[] players;
 	[HideInInspector]
 	public Player currentPlayer;
-	private int currentPlayerIndex;
+	public int currentPlayerIndex;
 	[SerializeField]
 	public Deck deck;
 
@@ -193,6 +193,8 @@ public class Game : MonoBehaviour
 
 	private void chooseFirstPlayer()
 	{
-		currentPlayer = players[Random.Range(0, players.Length)];
-	}
+		currentPlayerIndex = Random.Range(0, players.Length);
+		currentPlayer = players[currentPlayerIndex];
+
+    }
 }
