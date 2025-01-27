@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
 	public string Name;
 	[SerializeField]
-	private List<GameObject> Hand;
+	public List<GameObject> Hand;
 	[SerializeField]
 	private GameObject PlayerHandUI;
 
